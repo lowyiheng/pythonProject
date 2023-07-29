@@ -1,7 +1,5 @@
-f = open("hi.txt", "r")
+def fn(x, y):
+    z = x + y
 
-# print(f.read())
-# print(f.readline())
-# print(f.readlines())
-for i in f:
-    print(i)
+
+print(fn(1, 2))
