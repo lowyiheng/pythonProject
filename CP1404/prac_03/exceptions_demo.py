@@ -17,3 +17,8 @@ try:
 except ValueError:
     print("Numerator and denominator must be valid numbers!")
 print("Finished.")
+
+# 1. When will a ValueError occur?
+# since the user enters a non-numeric value.
+# 2. When will a ZeroDivisionError occur?
+# since the user enter a zero
