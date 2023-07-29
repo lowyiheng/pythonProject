@@ -1,14 +1,25 @@
-"""
-CP1404/CP5632 - Practical
-Fill in the TODOs to complete the task
-"""
+out_file = open("name.txt", "w")
+name = input("What is your name? ")
+print(name, file=out_file)
+out_file.close()
 
-is_finished = False
-while not is_finished:
-    try:
-        result = int(input("Enter a valid integer: "))
-        # TODO: this line
-        is_finished = True
-    except ValueError:  # TODO - add the exception you want to catch after except
-        print("Please enter a valid integer.")
-print("Valid result is:", result)
+# 2
+file = open("name.txt", "r")
+name = file.read().strip()
+file.close()
+print("Your name is", name)
+
+# 3
+file = open("numbers.txt", "r")
+first_number = int(file.readline())
+second_number = int(file.readline())
+print(first_number + second_number)
+
+# 4
+total = 0
+file = open("numbers.txt", "r")
+for line in file:
+    number = int(line)
+    total += number
+file.close()
+print(total)
