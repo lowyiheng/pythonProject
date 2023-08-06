@@ -1,52 +1,37 @@
 """
-CP1404/CP5632 - Practical
-Password checker "skeleton" code to help you get started
+CP1404/CP5632 Practical
+Data file -> lists program
 """
 
-MIN_LENGTH = 2
-MAX_LENGTH = 6
-SPECIAL_CHARS_REQUIRED = False
-SPECIAL_CHARACTERS = "!@#$%^&*()_-=+`~,./'[]<>?{}|\\"
+FILENAME = "hi.txt"
 
 
 def main():
-    """Program to get and check a user's password."""
-    print("Please enter a valid password")
-    print("Your password must be between", MIN_LENGTH, "and", MAX_LENGTH,
-          "characters, and contain:")
-    print("\t1 or more uppercase characters")
-    print("\t1 or more lowercase characters")
-    print("\t1 or more numbers")
-    if SPECIAL_CHARS_REQUIRED:
-        print("\tand 1 or more special characters: ", SPECIAL_CHARACTERS)
-    password = input("> ")
-    while not is_valid_password(password):
-        print("Invalid password!")
-        password = input("> ")
-    print(f"Your {len(password)}-character password is valid: {password}")
+    data = get_data()
+    display_subject(data)
 
 
-def is_valid_password(password):
-    """Determine if the provided password is valid."""
-    # TODO: if length is wrong, return False
-    if len(password) < MIN_LENGTH and len(password) > MAX_LENGTH:
-        return False
+def get_data():
+    """Read data from file formatted like: subject,lecturer,number of students."""
+    data = []
+    input_file = open(FILENAME)
+    for line in input_file:
+        print(line)  # See what a line looks like
+        print(repr(line))  # See what a line really looks like
+        line = line.strip()  # Remove the \n
+        parts = line.split(',')  # Separate the data into its parts
+        print(parts)  # See what the parts look like (notice the integer is a string)
+        parts[2] = int(parts[2])  # Make the number an integer (ignore PyCharm's warning)
+        print(parts)  # See if that worked
+        print("----------")
+        data.append(parts)
+    input_file.close()
+    return data
 
-    count_lower = 0
-    count_upper = 0
-    count_digit = 0
-    count_special = 0
-    for char in password:
-        # TODO: count each kind of character (use str methods like isdigit)
-        pass
 
-    # TODO: if any of the 'normal' counts are zero, return False
-
-    # TODO: if special characters are required, then check the count of those
-    # and return False if it's zero
-
-    # if we get here (without returning False), then the password must be valid
-    return True
+def display_subject(data):
+    for subject_data in data:
+        print("{} is taught by {:12} and has {:3} students".format(*subject_data))
 
 
 main()
